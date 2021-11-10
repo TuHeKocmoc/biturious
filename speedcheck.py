@@ -53,6 +53,7 @@ class External2(QThread):
 class Speedtest(QMainWindow, Ui_Speedtest):
     def __init__(self, *args):
         super().__init__()
+        self.ex = args[0]
         self.setupUi(self)
         self.progressBar.setValue(0)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -67,7 +68,7 @@ class Speedtest(QMainWindow, Ui_Speedtest):
 
     def exit_app(self):
         self.close()
-        self.args[0].show()
+        self.ex.show()
 
     def labels_change(self, value):
         if self.counter == 0:
