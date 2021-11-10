@@ -33,7 +33,7 @@ class External2(QThread):
     countChanged = pyqtSignal(int)
 
     def run(self):
-        for i in range(4):
+        for i in range(3):
             st = speedtest.Speedtest()
             if i == 0:
                 try:
