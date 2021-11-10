@@ -86,7 +86,7 @@ class Reg(QMainWindow, Ui_Reg):
 
     def exit_app(self):
         self.close()
-        args[0].show()
+        self.main.show()
 
     def reg(self):
         self.label_5.setText('')
@@ -163,7 +163,7 @@ class Activate(QMainWindow, Ui_Activate):
 
     def exit_app(self):
         self.close()
-        args[1].show()
+        self.main.show()
 
     def activate(self):
         self.label_2.setText('')

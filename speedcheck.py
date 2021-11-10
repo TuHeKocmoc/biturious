@@ -1,7 +1,6 @@
 import speedtest
 import time
 import sys
-import PyTouchBar
 
 from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget

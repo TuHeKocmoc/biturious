@@ -82,7 +82,7 @@ class Forgot(QMainWindow, Ui_Forgot):
 
     def exit_app(self):
         self.close()
-        args[0].show()
+        self.main.show()
 
     def restore(self):
         self.label_2.setText('')
@@ -154,7 +154,7 @@ class Forgot2(QMainWindow, Ui_Forgot2):
 
     def exit_app(self):
         self.close()
-        args[1].show()
+        self.main.show()
 
     def restore(self):
         self.label_2.setText('')
