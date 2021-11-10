@@ -34,10 +34,6 @@ def check_acc(username, email):
     return email == true_email[0][0]
 
 
-def exit_app():
-    sys.exit(app.exec())
-
-
 def hash_password(password):
     salt = uuid.uuid4().hex
     os.environ['SALT'] = 'bK4-LbL-fT7-2WB'
@@ -86,7 +82,11 @@ class Reg(QMainWindow, Ui_Reg):
         self.lineEdit_5.setText(args[0].lineEdit_2.text())
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.pushButton_4.clicked.connect(self.reg)
-        self.pushButton_5.clicked.connect(exit_app)
+        self.pushButton_5.clicked.connect(self.exit_app)
+
+    def exit_app(self):
+        self.close()
+        args[0].show()
 
     def reg(self):
         self.label_5.setText('')
@@ -155,11 +155,15 @@ class Activate(QMainWindow, Ui_Activate):
         self.lineEdit.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.pushButton.clicked.connect(self.activate)
-        self.pushButton_4.clicked.connect(exit_app)
+        self.pushButton_4.clicked.connect(self.exit_app)
         self.email = args[0].lineEdit_2.text()
         self.password = args[0].lineEdit_5.text()
         self.login = args[0].lineEdit_4.text()
         self.true_code = send_code(self.email)
+
+    def exit_app(self):
+        self.close()
+        args[1].show()
 
     def activate(self):
         self.label_2.setText('')
@@ -179,5 +183,4 @@ class Activate(QMainWindow, Ui_Activate):
                     (self.login, hash_password(self.password), self.email, get_ip(), get_ip(), 0.0, True))
         con.commit()
         con.close()
-        self.close()
-        self.main.show()
+        self.exit_app()

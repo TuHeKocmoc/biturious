@@ -15,6 +15,7 @@ from requests import get
 from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 
+
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 
@@ -33,10 +34,6 @@ def check_acc(username, email):
     true_email = cur.execute("""SELECT email FROM users 
                     WHERE login = ? """, (username, )).fetchall()
     return email == true_email[0][0]
-
-
-def exit_app():
-    sys.exit(app.exec())
 
 
 def hash_password(password):
@@ -81,7 +78,11 @@ class Forgot(QMainWindow, Ui_Forgot):
         self.lineEdit.setText(args[0].lineEdit.text())
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.pushButton.clicked.connect(self.restore)
-        self.pushButton_5.clicked.connect(exit_app)
+        self.pushButton_5.clicked.connect(self.exit_app)
+
+    def exit_app(self):
+        self.close()
+        args[0].show()
 
     def restore(self):
         self.label_2.setText('')
@@ -149,7 +150,11 @@ class Forgot2(QMainWindow, Ui_Forgot2):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.pushButton.clicked.connect(self.restore)
         self.true_code = send_code(self.email)
-        self.pushButton_5.clicked.connect(exit_app)
+        self.pushButton_5.clicked.connect(self.exit_app)
+
+    def exit_app(self):
+        self.close()
+        args[1].show()
 
     def restore(self):
         self.label_2.setText('')
@@ -190,5 +195,4 @@ class Forgot2(QMainWindow, Ui_Forgot2):
 
         con.commit()
         con.close()
-        self.close()
-        self.main.show()
+        self.exit_app()
