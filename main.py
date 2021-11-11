@@ -64,10 +64,11 @@ class Login(QMainWindow, Ui_Login):
             file = open('settings.txt', 'r')
             logpass = file.readlines()
             login = logpass[0].strip()
-            password = logpass[1]
+            password = logpass[1].strip()
             self.login = login[login.find('=') + 1:]
             self.password = password[password.find('=') + 1:]
             self.authorize()
+            file.close()
 
     def authorize(self):
         self.label_2.setText('Пожалуйста, представьтесь')

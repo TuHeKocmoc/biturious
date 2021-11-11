@@ -60,6 +60,7 @@ class Settings(QMainWindow, Ui_Settings):
         self.lineEdit.setReadOnly(True)
         self.lineEdit_2.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
         self.lineEdit_3.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
+        self.lineEdit_4.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
 
     def check(self):
         self.label_2.setText('')
@@ -108,6 +109,12 @@ class Settings(QMainWindow, Ui_Settings):
             cur.execute("""UPDATE users 
                             SET password = ? 
                             WHERE email = ?""", (hash_password(self.password), self.login))
+
+        if self.lineEdit_4.text():
+            file = open('settings.txt', 'w+')
+            file.seek(3)
+            file.write('apikey=' + lineEdit_4.text())
+            file.close()
 
         con.commit()
         con.close()
