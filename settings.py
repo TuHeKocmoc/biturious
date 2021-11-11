@@ -62,18 +62,18 @@ class Settings(QMainWindow, Ui_Settings):
         self.lineEdit_3.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
 
     def check(self):
-        self.lineEdit.setText(self.login)
+        self.label_2.setText('')
         con = sqlite3.connect("auth.db")
         cur = con.cursor()
 
         if self.lineEdit_2.text() != self.email:
             self.email = self.lineEdit_2.text()
             if not self.email:
-                self.lineEdit.setText('Вы не ввели почту!')
+                self.label_2.setText('Вы не ввели почту!')
                 con.close()
                 return 0
             elif not check_email(self.email):
-                self.lineEdit.setText('Вы ввели неверную почту')
+                self.label_2.setText('Вы ввели неверную почту')
                 con.close()
                 return 0
 
@@ -90,12 +90,12 @@ class Settings(QMainWindow, Ui_Settings):
         if self.lineEdit_3.text() != self.password:
             self.password = self.lineEdit_3.text()
             if not self.password:
-                self.lineEdit.setText('Вы не ввели пароль!')
+                self.label_2.setText('Вы не ввели пароль!')
                 con.close()
                 return 0
 
             elif not check_pass(self.password):
-                self.lineEdit.setText('Пароль содержит запрещенные символы')
+                self.label_2.setText('Пароль содержит запрещенные символы')
                 con.close()
                 return 0
 
