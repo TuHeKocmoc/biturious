@@ -6,6 +6,7 @@ import smtplib
 import random
 import uuid
 import hashlib
+import string
 
 from email.mime.text import MIMEText
 from requests import get
@@ -32,6 +33,11 @@ def check_acc(username, email):
     true_email = cur.execute("""SELECT email FROM users 
                     WHERE login = ? """, (username, )).fetchall()
     return email == true_email[0][0]
+
+
+def check(test_str):
+    allowed = set(string.digits + string.ascii_letters)
+    return set(test_str) <= allowed
 
 
 def hash_password(password):
@@ -121,6 +127,10 @@ class Reg(QMainWindow, Ui_Reg):
             self.label_5.setText('Обязательно для заполнения')
             con.close()
             return 0
+        elif not check(login):
+            self.label_5.setText('Используются запрещенные символы')
+            con.close()
+            return 0
         elif not email:
             self.label_7.setText('Обязательно для заполнения')
             con.close()
@@ -135,6 +145,10 @@ class Reg(QMainWindow, Ui_Reg):
             return 0
         elif not password:
             self.label_6.setText('Обязательно для заполнения')
+            con.close()
+            return 0
+        elif not check(password):
+            self.label_6.setText('Используются запрещенные символы')
             con.close()
             return 0
         elif len(password) < 6:
