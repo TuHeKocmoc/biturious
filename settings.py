@@ -5,10 +5,16 @@ import re
 import datetime
 import uuid
 import hashlib
+import cgitb
+import sqlite3
+import string
+import os
 
 from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from settingsui import Ui_MainWindow as Ui_Settings
+
+cgitb.enable(format='text')
 
 
 def check_email(email):
@@ -16,12 +22,9 @@ def check_email(email):
     return re.match(pattern, email)
 
 
-def check_acc(username, email):
-    con = sqlite3.connect("auth.db")
-    cur = con.cursor()
-    true_email = cur.execute("""SELECT email FROM users 
-                    WHERE login = ? """, (username, )).fetchall()
-    return email == true_email[0][0]
+def check_pass(test_str):
+    allowed = set(string.digits + string.ascii_letters)
+    return set(test_str) <= allowed
 
 
 def hash_password(password):
@@ -42,6 +45,7 @@ if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
 class Settings(QMainWindow, Ui_Settings):
     def __init__(self, *args):
         super().__init__()
+        self.setupUi(self)
         self.login = args[1]
         self.email = args[2]
         self.password = args[3]
@@ -49,10 +53,9 @@ class Settings(QMainWindow, Ui_Settings):
         self.lineEdit.setText(args[1])
         self.lineEdit_2.setText(args[2])
         self.lineEdit_3.setText(args[3])
-        self.setupUi(self)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.pushButton.clicked.connect(self.exit_app)
-        self.pushButton_2.clicked.conenct(self.check)
+        self.pushButton_2.clicked.connect(self.check)
         self.lineEdit.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
         self.lineEdit.setReadOnly(True)
         self.lineEdit_2.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
@@ -70,7 +73,7 @@ class Settings(QMainWindow, Ui_Settings):
                 con.close()
                 return 0
             elif not check_email(self.email):
-                self.lineEdit.setText('Вы ввели невернуюпочту')
+                self.lineEdit.setText('Вы ввели неверную почту')
                 con.close()
                 return 0
 
@@ -91,7 +94,7 @@ class Settings(QMainWindow, Ui_Settings):
                 con.close()
                 return 0
 
-            elif not check_pass(password1):
+            elif not check_pass(self.password):
                 self.lineEdit.setText('Пароль содержит запрещенные символы')
                 con.close()
                 return 0
