@@ -120,12 +120,29 @@ class Settings(QMainWindow, Ui_Settings):
                 os.remove(path)
                 file = open('settings.txt', 'w+')
                 tmp = ''
-                text = text[:-1]
+                text = text[:-2] + text[-1]
                 for i in text:
                     tmp += i
                 file.write(tmp + 'apikey=' + self.lineEdit_4.text())
             else:
                 file.write('\napikey=' + self.lineEdit_4.text())
+            file.close()
+
+        if self.lineEdit_5.text():
+            path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
+            file = open(path, 'r+')
+            text = file.readlines()
+            if 'secretkey' in text[3]:
+                file.close()
+                os.remove(path)
+                file = open('settings.txt', 'w+')
+                tmp = ''
+                text = text[:-1]
+                for i in text:
+                    tmp += i
+                file.write(tmp + 'secretkey=' + self.lineEdit_5.text())
+            else:
+                file.write('\nsecretkey=' + self.lineEdit_5.text())
             file.close()
 
         con.commit()

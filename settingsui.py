@@ -19,7 +19,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 290, 751, 151))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 281, 751, 201))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -99,6 +99,56 @@ class Ui_MainWindow(object):
         self.lineEdit_2.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.verticalLayout.addWidget(self.lineEdit_2, 0, QtCore.Qt.AlignHCenter)
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.lineEdit_4.setMinimumSize(QtCore.QSize(200, 0))
+        font = QtGui.QFont()
+        font.setFamily("Solomon Sans")
+        font.setPointSize(12)
+        self.lineEdit_4.setFont(font)
+        self.lineEdit_4.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.lineEdit_4.setStyleSheet("QLineEdit {\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    border-color: white;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border-style: solid;\n"
+"    border-width: 3px;\n"
+"    border-color: grey;\n"
+"    color: white;\n"
+"}\n"
+"")
+        self.lineEdit_4.setText("")
+        self.lineEdit_4.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.verticalLayout.addWidget(self.lineEdit_4, 0, QtCore.Qt.AlignHCenter)
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.lineEdit_5.setMinimumSize(QtCore.QSize(200, 0))
+        font = QtGui.QFont()
+        font.setFamily("Solomon Sans")
+        font.setPointSize(12)
+        self.lineEdit_5.setFont(font)
+        self.lineEdit_5.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.lineEdit_5.setStyleSheet("QLineEdit {\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    border-color: white;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border-style: solid;\n"
+"    border-width: 3px;\n"
+"    border-color: grey;\n"
+"    color: white;\n"
+"}\n"
+"")
+        self.lineEdit_5.setText("")
+        self.lineEdit_5.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.verticalLayout.addWidget(self.lineEdit_5, 0, QtCore.Qt.AlignHCenter)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.pushButton_2 = QtWidgets.QPushButton(self.verticalLayoutWidget)
@@ -154,6 +204,8 @@ class Ui_MainWindow(object):
         self.lineEdit.setPlaceholderText(_translate("MainWindow", "ваше имя"))
         self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "ваш email"))
         self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "ваш пароль"))
+        self.lineEdit_4.setPlaceholderText(_translate("MainWindow", "ваш api-key"))
+        self.lineEdit_5.setPlaceholderText(_translate("MainWindow", "ваш secret-key"))
         self.pushButton_2.setText(_translate("MainWindow", "Применить"))
         self.pushButton.setText(_translate("MainWindow", "Отмена"))
         self.label.setText(_translate("MainWindow", " Настройки"))
