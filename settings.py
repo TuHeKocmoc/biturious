@@ -5,7 +5,6 @@ import re
 import datetime
 import uuid
 import hashlib
-import cgitb
 import sqlite3
 import string
 import os
@@ -14,8 +13,6 @@ import pathlib
 from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from settingsui import Ui_MainWindow as Ui_Settings
-
-cgitb.enable(format='text')
 
 
 def check_email(email):
@@ -115,14 +112,20 @@ class Settings(QMainWindow, Ui_Settings):
             path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
             file = open(path, 'r+')
             text = file.readlines()
-            if 'apikey' in text[2]:
+            if len(text) >= 3:
                 file.close()
                 os.remove(path)
                 file = open('settings.txt', 'w+')
                 tmp = ''
-                text = text[:-2] + text[-1]
+                if len(text) >= 4:
+                    tmp2 = text[-1]
+                    text = text[:-2]
+                    text.append(tmp2)
+                else:
+                    text = text[:-1]
                 for i in text:
                     tmp += i
+                print(tmp)
                 file.write(tmp + 'apikey=' + self.lineEdit_4.text())
             else:
                 file.write('\napikey=' + self.lineEdit_4.text())
@@ -132,7 +135,7 @@ class Settings(QMainWindow, Ui_Settings):
             path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
             file = open(path, 'r+')
             text = file.readlines()
-            if 'secretkey' in text[3]:
+            if len(text) >= 4:
                 file.close()
                 os.remove(path)
                 file = open('settings.txt', 'w+')
