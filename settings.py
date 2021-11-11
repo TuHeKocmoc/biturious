@@ -9,6 +9,7 @@ import cgitb
 import sqlite3
 import string
 import os
+import pathlib
 
 from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
@@ -111,9 +112,20 @@ class Settings(QMainWindow, Ui_Settings):
                             WHERE email = ?""", (hash_password(self.password), self.login))
 
         if self.lineEdit_4.text():
-            file = open('settings.txt', 'w+')
-            file.seek(3)
-            file.write('apikey=' + lineEdit_4.text())
+            path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
+            file = open(path, 'r+')
+            text = file.readlines()
+            if 'apikey' in text[2]:
+                file.close()
+                os.remove(path)
+                file = open('settings.txt', 'w+')
+                tmp = ''
+                text = text[:-1]
+                for i in text:
+                    tmp += i
+                file.write(tmp + 'apikey=' + self.lineEdit_4.text())
+            else:
+                file.write('\napikey=' + self.lineEdit_4.text())
             file.close()
 
         con.commit()
