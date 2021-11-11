@@ -28,6 +28,11 @@ def check_email(email):
     return re.match(pattern, email)
 
 
+def check_pass(test_str):
+    allowed = set(string.digits + string.ascii_letters)
+    return set(test_str) <= allowed
+
+
 def check_acc(username, email):
     con = sqlite3.connect("auth.db")
     cur = con.cursor()
@@ -182,6 +187,10 @@ class Forgot2(QMainWindow, Ui_Forgot2):
             self.label_2.setText('Вы не ввели пароль!')
             con.close()
             return 0
+        elif not check_pass(password1):
+            self.label_2.setText('Пароль содержит запрещенные символы')
+            con.close()
+            return 0
 
         true_password = cur.execute("""SELECT password FROM users 
                  WHERE login = ? """, (self.login,)).fetchall()
@@ -191,7 +200,7 @@ class Forgot2(QMainWindow, Ui_Forgot2):
 
         cur.execute("""UPDATE users 
                 SET password = ? 
-                WHERE email = ?""", (hash_password(password1), self.email))
+                WHERE login = ?""", (hash_password(password1), self.login))
 
         con.commit()
         con.close()
