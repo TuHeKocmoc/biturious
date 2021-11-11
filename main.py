@@ -7,14 +7,11 @@ import hashlib
 import pathlib
 from reg import Reg
 from forgot import Forgot
-import cgitb
 
 from requests import get
 from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from mainui import Ui_Login
-
-cgitb.enable(format='text')
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
