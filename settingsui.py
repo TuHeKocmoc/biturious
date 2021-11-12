@@ -19,7 +19,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 281, 751, 201))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 200, 751, 223))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -149,6 +149,31 @@ class Ui_MainWindow(object):
         self.lineEdit_5.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_5.setObjectName("lineEdit_5")
         self.verticalLayout.addWidget(self.lineEdit_5, 0, QtCore.Qt.AlignHCenter)
+        self.lineEdit_6 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.lineEdit_6.setMinimumSize(QtCore.QSize(200, 0))
+        font = QtGui.QFont()
+        font.setFamily("Solomon Sans")
+        font.setPointSize(12)
+        self.lineEdit_6.setFont(font)
+        self.lineEdit_6.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.lineEdit_6.setStyleSheet("QLineEdit {\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    border-color: white;\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border-style: solid;\n"
+"    border-width: 3px;\n"
+"    border-color: grey;\n"
+"    color: white;\n"
+"}\n"
+"")
+        self.lineEdit_6.setText("")
+        self.lineEdit_6.setAlignment(QtCore.Qt.AlignCenter)
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.verticalLayout.addWidget(self.lineEdit_6, 0, QtCore.Qt.AlignHCenter)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.pushButton_2 = QtWidgets.QPushButton(self.verticalLayoutWidget)
@@ -206,6 +231,7 @@ class Ui_MainWindow(object):
         self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "ваш пароль"))
         self.lineEdit_4.setPlaceholderText(_translate("MainWindow", "ваш api-key"))
         self.lineEdit_5.setPlaceholderText(_translate("MainWindow", "ваш secret-key"))
+        self.lineEdit_6.setPlaceholderText(_translate("MainWindow", "ваш bitcoin кошелек"))
         self.pushButton_2.setText(_translate("MainWindow", "Применить"))
         self.pushButton.setText(_translate("MainWindow", "Отмена"))
         self.label.setText(_translate("MainWindow", " Настройки"))
