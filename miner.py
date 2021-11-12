@@ -399,9 +399,16 @@ class Mining(Client):
 
 
 class Implementation:
-    def __init__(self, *args):
+    def __init__(self):
+        file = open('settings.txt', 'r')
+        data = file.readlines()
+        self.bitcoinkey = ''
+        if len(data) >= 5:
+            bitcoinkey = data[4].strip()
+            self.bitcoinkey = bitcoinkey[bitcoinkey.find('=') + 1:]
+        file.close()
         optionsurl = 'stratum+tcp://sha256.eu-north.nicehash.com:3334'
-        optionsusername = args[0]
+        optionsusername = self.bitcoinkey
         optionspassword = 'x'
 
         if optionsurl:

@@ -5,13 +5,25 @@ import os
 import random
 import hashlib
 import pathlib
+import shutil
+import ctypes
+
+if sys.platform == 'cygwin' or sys.platform == 'win32':
+    from ctypes import wintypes
+    try:
+        import winreg
+    except ImportError:
+        import _winreg as winreg
+
 from reg import Reg
 from forgot import Forgot
 
+
 from requests import get
-from PyQt5 import uic, QtCore #, QtGui
+from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from mainui import Ui_Login
+
 
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
@@ -136,7 +148,6 @@ class Login(QMainWindow, Ui_Login):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    #_id = QtGui.QFontDatabase.addApplicationFont("font.ttf")
     ex = Login()
     ex.show()
     exit_app()
