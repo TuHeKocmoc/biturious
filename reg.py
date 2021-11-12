@@ -10,12 +10,12 @@ import string
 
 from email.mime.text import MIMEText
 from requests import get
-from PyQt5 import uic, QtCore, QtGui
+from PyQt5 import uic, QtCore #, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from regui import Ui_MainWindow as Ui_Reg
 from activateui import Ui_MainWindow as Ui_Activate
 
-_id = QtGui.QFontDatabase.addApplicationFont("font.ttf")
+#_id = QtGui.QFontDatabase.addApplicationFont("font.ttf")
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)

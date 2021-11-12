@@ -9,12 +9,14 @@ import sqlite3
 import string
 import os
 import pathlib
+import cgitb
 
-from PyQt5 import uic, QtCore, QtGui
+from PyQt5 import uic, QtCore #, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from settingsui import Ui_MainWindow as Ui_Settings
 
-_id = QtGui.QFontDatabase.addApplicationFont("font.ttf")
+#_id = QtGui.QFontDatabase.addApplicationFont("font.ttf")
+cgitb.enable(format='text')
 
 
 def check_email(email):
@@ -66,16 +68,23 @@ class Settings(QMainWindow, Ui_Settings):
         self.path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
         file = open('settings.txt', 'r')
         data = file.readlines()
-        apikey = data[2].strip()
-        secretkey = data[3].strip()
-        bitcoinkey = data[4].strip()
-        self.apikey = apikey[apikey.find('=') + 1:]
-        self.secretkey = secretkey[secretkey.find('=') + 1:]
-        self.bitcoinkey = bitcoinkey[bitcoinkey.find('=') + 1:]
+        self.apikey = ''
+        self.secretkey = ''
+        self.bitcoinkey = ''
+        if len(data) >= 3:
+            apikey = data[2].strip()
+            self.apikey = apikey[apikey.find('=') + 1:]
+            self.lineEdit_4.setText(self.apikey)
+        if len(data) >= 4:
+            secretkey = data[3].strip()
+            self.secretkey = secretkey[secretkey.find('=') + 1:]
+            self.lineEdit_5.setText(self.secretkey)
+        if len(data) >= 5:
+            bitcoinkey = data[4].strip()
+            self.bitcoinkey = bitcoinkey[bitcoinkey.find('=') + 1:]
+            self.lineEdit_6.setText(self.bitcoinkey)
         file.close()
-        self.lineEdit_4.setText(self.apikey)
-        self.lineEdit_5.setText(self.secretkey)
-        self.lineEdit_6.setText(self.bitcoinkey)
+
 
     def check(self):
         self.label_2.setText('')
@@ -157,7 +166,12 @@ class Settings(QMainWindow, Ui_Settings):
             list_strings = text.split('\n')
             file.close()
             file = open(self.path, 'w+')
-            list_strings[3] = 'secretkey=' + self.lineEdit_5.text()
+            if len(list_strings) >= 4:
+                list_strings[3] = 'secretkey=' + self.lineEdit_5.text()
+            else:
+                print('ok')
+                list_strings.append('apikey=')
+                list_strings.append('secretkey=' + self.lineEdit_5.text())
             for i in list_strings:
                 tmp = i.strip()
                 if tmp:
@@ -171,7 +185,13 @@ class Settings(QMainWindow, Ui_Settings):
             list_strings = text.split('\n')
             file.close()
             file = open(self.path, 'w+')
-            list_strings[4] = 'bitcoin=' + self.lineEdit_6.text()
+            if len(list_strings) >= 5:
+                list_strings[4] = 'bitcoin=' + self.lineEdit_6.text()
+            else:
+                if len(list_strings) == 3:
+                    list_strings.append('apikey=')
+                list_strings.append('secretkey=')
+                list_strings.append('bitcoin=' + self.lineEdit_6.text())
             for i in list_strings:
                 tmp = i.strip()
                 if tmp:
@@ -185,4 +205,11 @@ class Settings(QMainWindow, Ui_Settings):
 
     def exit_app(self):
         self.close()
-        self.main.show()
+        #self.main.show()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = Settings('', 'test', '123', '123')
+    ex.show()
+    sys.exit(app.exec())

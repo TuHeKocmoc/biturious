@@ -7,11 +7,14 @@ import hashlib
 import pathlib
 from reg import Reg
 from forgot import Forgot
+import cgitb
 
 from requests import get
-from PyQt5 import uic, QtCore, QtGui
+from PyQt5 import uic, QtCore #, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from mainui import Ui_Login
+
+cgitb.enable(format='text')
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -135,7 +138,7 @@ class Login(QMainWindow, Ui_Login):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    _id = QtGui.QFontDatabase.addApplicationFont("font.ttf")
+    #_id = QtGui.QFontDatabase.addApplicationFont("font.ttf")
     ex = Login()
     ex.show()
     exit_app()
