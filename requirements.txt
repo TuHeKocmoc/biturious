@@ -2,4 +2,3 @@ PyQt5
 requests
 speedtest-cli
 urllib3
-fonttools
