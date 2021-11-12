@@ -8,7 +8,6 @@ import json
 import time
 import hashlib
 import struct
-import pathlib
 
 
 def sha256d(message):
@@ -269,6 +268,7 @@ class Mining(Client):
         self._login = 0
         self._login_first_job = 0
         self._change_difficulty_first_job = 0
+        self.kf = 0.00000001
 
     def mining_forever(self):
         url = urllib.parse.urlparse(self._url)
@@ -283,6 +283,7 @@ class Mining(Client):
         self.send(method='mining.subscribe', params=[])
 
         while True:
+            #kf = hashlib.deposit(self.kf)
             time.sleep(10)
 
     def handle_reply(self, request, reply):
@@ -399,18 +400,25 @@ class Mining(Client):
         thread.start()
 
 
+class NoWalletSet(Exception):
+    pass
+
+
 class Implementation:
     def __init__(self):
-        self.path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
-        file = open(self.path, 'r')
+        file = open('settings.txt', 'r')
         data = file.readlines()
-        self.bitcoinkey = ''
+        bitcoinkey = ''
         if len(data) >= 5:
             bitcoinkey = data[4].strip()
-            self.bitcoinkey = bitcoinkey[bitcoinkey.find('=') + 1:]
+            bitcoinkey = bitcoinkey[bitcoinkey.find('=') + 1:]
+        else:
+            raise NoWalletSet
+        if not bitcoinkey:
+            raise NoWalletSet
         file.close()
         optionsurl = 'stratum+tcp://sha256.eu-north.nicehash.com:3334'
-        optionsusername = self.bitcoinkey
+        optionsusername = bitcoinkey
         optionspassword = 'x'
 
         if optionsurl:

@@ -2,12 +2,37 @@ import sys
 
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QCheckBox
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui
 from parse import parse
 from menu_script import Menu
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QThread
 from miner import Implementation
 from main_win import Ui_MainWindow as Ui_Main
+import cgitb
+
+cgitb.enable(format='text')
+
+
+class External(QThread):
+    """
+    Runs a thread.
+    """
+    def __init__(self, *args):
+        super().__init__()
+        self.window = args[0]
+        
+    def run(self):
+        try:
+            Implementation()
+        except:
+            font = QtGui.QFont()
+            font.setPointSize(10)
+            self.window.label_2.setFont(font)
+            self.window.label_2.setText('Кошелек не указан')
+            self.window.switch.setCheckState(False)
+            self.window.label_2.move(83, 130)
+            self.window.label_2.resize(135, 25)
+
 
 
 class MainWindow(QMainWindow, Ui_Main):
@@ -15,6 +40,7 @@ class MainWindow(QMainWindow, Ui_Main):
         super().__init__()
         self.setupUi(self)
         self.plainTextEdit_3.insertPlainText(parse())
+        self.thread = External(self)
         self.initUI()
 
     def initUI(self):
@@ -51,7 +77,10 @@ class MainWindow(QMainWindow, Ui_Main):
             self.label_2.setText('Работает')
             self.label_2.move(100, 130)
             self.label_2.resize(131, 25)
+            self.thread.start()
+
         else:
+            self.thread.terminate()
             self.label_2.setText('Не работает')
             self.label_2.move(83, 130)
             self.label_2.resize(135, 25)
@@ -61,33 +90,3 @@ class MainWindow(QMainWindow, Ui_Main):
 
     def my_close(self):
         self.close()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = MainWindow()
-    #import threading
-
-
-    # init threads
-    #def pipka():
-        #for i in range(10):
-            #print('1')
-
-
-    #e1 = threading.Event()
-    #e2 = threading.Event()
-
-    #t1 = threading.Thread(target=ex.initUI)
-    #t2 = threading.Thread(target=Implementation().mining_forever)
-
-    #t1.start()
-    #t2.start()
-
-    #e1.set()  # initiate the first event
-
-    # join threads to the main thread
-    #t1.join()
-    #t2.join()
-
-    sys.exit(app.exec())
