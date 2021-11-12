@@ -8,6 +8,7 @@ import json
 import time
 import hashlib
 import struct
+import pathlib
 
 
 def sha256d(message):
@@ -400,7 +401,8 @@ class Mining(Client):
 
 class Implementation:
     def __init__(self):
-        file = open('settings.txt', 'r')
+        self.path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
+        file = open(self.path, 'r')
         data = file.readlines()
         self.bitcoinkey = ''
         if len(data) >= 5:
