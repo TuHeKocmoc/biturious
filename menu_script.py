@@ -9,6 +9,9 @@ from gpu import GPU
 from menu_dis import Ui_MainWindow as Ui_Menu
 from speedcheck import Speedtest
 from settings import Settings
+import cgitb
+
+cgitb.enable(display='text')
 
 CLASSES = {
     'График курса Bitcoin': Graph,
@@ -16,7 +19,8 @@ CLASSES = {
     'Продажа и покупка Bitcoin': Stock,
     'Помощь в покупке и продаже Bitcoin': Help_Stock,
     'Лучшие видеокарты': GPU,
-    'Настройки': Settings
+    'Настройки': Settings,
+    'Проверка скорости\n интернета': Speedtest
 }
 
 
