@@ -12,7 +12,7 @@ from forgotui import Ui_MainWindow as Ui_Forgot
 from forgot2ui import Ui_MainWindow as Ui_Forgot2
 from email.mime.text import MIMEText
 from requests import get
-from PyQt5 import uic, QtCore
+from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 
 _id = QtGui.QFontDatabase.addApplicationFont("font.ttf")

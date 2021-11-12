@@ -2,7 +2,7 @@ import speedtest
 import time
 import sys
 
-from PyQt5 import uic, QtCore
+from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from PyQt5.QtCore import QThread, pyqtSignal
 from speedtestui import Ui_MainWindow as Ui_Speedtest

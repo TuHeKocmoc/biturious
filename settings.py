@@ -10,7 +10,7 @@ import string
 import os
 import pathlib
 
-from PyQt5 import uic, QtCore
+from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from settingsui import Ui_MainWindow as Ui_Settings
 
