@@ -7,6 +7,8 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from PyQt5.QtCore import QThread, pyqtSignal
 from speedtestui import Ui_MainWindow as Ui_Speedtest
 
+_id = QtGui.QFontDatabase.addApplicationFont("font.ttf")
+
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 

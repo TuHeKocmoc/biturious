@@ -14,6 +14,8 @@ from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from settingsui import Ui_MainWindow as Ui_Settings
 
+_id = QtGui.QFontDatabase.addApplicationFont("font.ttf")
+
 
 def check_email(email):
     pattern = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"

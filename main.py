@@ -9,7 +9,7 @@ from reg import Reg
 from forgot import Forgot
 
 from requests import get
-from PyQt5 import uic, QtCore
+from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from mainui import Ui_Login
 
@@ -119,6 +119,7 @@ class Login(QMainWindow, Ui_Login):
             file.write('login=' + login)
             file.write('\n')
             file.write('password=' + password)
+            file.write('\n')
             file.close()
 
     def reg(self):
@@ -134,6 +135,7 @@ class Login(QMainWindow, Ui_Login):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    _id = QtGui.QFontDatabase.addApplicationFont("font.ttf")
     ex = Login()
     ex.show()
     exit_app()
