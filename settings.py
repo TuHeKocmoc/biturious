@@ -9,13 +9,10 @@ import sqlite3
 import string
 import os
 import pathlib
-import cgitb
 
 from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from settingsui import Ui_MainWindow as Ui_Settings
-
-cgitb.enable(format='text')
 
 
 def check_email(email):
@@ -41,10 +38,6 @@ if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
 
 if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
     QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
-
-
-class FileNotValid(Exception):
-    pass
 
 
 class Settings(QMainWindow, Ui_Settings):
@@ -190,12 +183,4 @@ class Settings(QMainWindow, Ui_Settings):
 
     def exit_app(self):
         self.close()
-        #self.main.show()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = Settings('', 'test', '123', '123')
-    ex.show()
-    sys.exit(app.exec())
-
+        self.main.show()
