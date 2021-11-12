@@ -30,6 +30,10 @@
 - pyinstaller
 - speedtest-cli for speedtest
 - urllib3 and requests for http requests (GET)
+- bs4 (beautifulsoup4) for parsing
+- matplotlib for graphics
+- python-binance for API Binance
+- future for back support
 
 
 ### RUS:
@@ -61,4 +65,7 @@
 - pyinstaller
 - speedtest-cli для speedtest
 - urllib3 и requests для http запросов (GET)
-
+- bs4 (beautifulsoup4) для парсинга
+- matplotlib для графиков
+- python-binance для API Binance
+- future для обратной поддержки
