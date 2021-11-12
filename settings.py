@@ -44,13 +44,22 @@ class Settings(QMainWindow, Ui_Settings):
     def __init__(self, *args):
         super().__init__()
         self.setupUi(self)
-        self.login = args[1]
-        self.email = args[2]
-        self.password = args[3]
+        con = sqlite3.connect("auth.db")
+        cur = con.cursor()
+        file = open('settings.txt', 'r')
+        logpass = file.readlines()
+        login = logpass[0].strip()
+        password = logpass[1].strip()
+        self.login = login[login.find('=') + 1:]
+        self.password = password[password.find('=') + 1:]
+        file.close()
         self.main = args[0]
-        self.lineEdit.setText(args[1])
-        self.lineEdit_2.setText(args[2])
-        self.lineEdit_3.setText(args[3])
+        self.lineEdit.setText(self.login)
+        email = cur.execute("""SELECT email FROM users 
+                            WHERE login = ? """, (self.login,)).fetchall()
+        self.email = email[0][0]
+        self.lineEdit_2.setText(self.email)
+        self.lineEdit_3.setText(self.password)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.pushButton.clicked.connect(self.exit_app)
         self.pushButton_2.clicked.connect(self.check)
