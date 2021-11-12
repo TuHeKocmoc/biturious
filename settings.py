@@ -203,11 +203,4 @@ class Settings(QMainWindow, Ui_Settings):
 
     def exit_app(self):
         self.close()
-        #self.main.show()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = Settings('', 'test', '123', '123')
-    ex.show()
-    sys.exit(app.exec())
+        self.main.show()
