@@ -5,6 +5,7 @@ import os
 import random
 import hashlib
 import pathlib
+import time
 from reg import Reg
 from forgot import Forgot
 
@@ -12,6 +13,7 @@ from requests import get
 from PyQt5 import uic, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from mainui import Ui_Login
+from main_window import MainWindow
 
 import os
 import shutil
@@ -154,20 +156,15 @@ class Login(QMainWindow, Ui_Login):
             password = logpass[1].strip()
             self.login = login[login.find('=') + 1:]
             self.password = password[password.find('=') + 1:]
-            self.authorize()
+            self.lineEdit.setText(self.login)
+            self.lineEdit_2.setText(self.password)
             file.close()
 
     def authorize(self):
         self.label_2.setText('Пожалуйста, представьтесь')
         self.label_2.setStyleSheet('QLabel { color: grey }')
-        if self.login:
-            login = self.login
-        else:
-            login = self.lineEdit.text()
-        if self.password:
-            password = self.password
-        else:
-            password = self.lineEdit_2.text()
+        login = self.lineEdit.text()
+        password = self.lineEdit_2.text()
         con = sqlite3.connect("auth.db")
         cur = con.cursor()
         logins = cur.execute("SELECT login FROM users").fetchall()
@@ -195,6 +192,7 @@ class Login(QMainWindow, Ui_Login):
                 self.label_2.setStyleSheet('QLabel { color: red }')
                 return 0
         self.label_2.setText('OK, ' + login)
+        self.close()
         self.label_2.setStyleSheet('QLabel { color: green }')
         cur.execute("""UPDATE users 
                 SET last_ip = ? 
@@ -208,6 +206,9 @@ class Login(QMainWindow, Ui_Login):
             file.write('password=' + password)
             file.write('\n')
             file.close()
+        self.close()
+        self.next = MainWindow()
+        self.next.show()
 
     def reg(self):
         self.close()
