@@ -7,13 +7,16 @@ from stock import Stock
 from support_stock import Help_Stock
 from gpu import GPU
 from menu_dis import Ui_MainWindow as Ui_Menu
+from speedcheck import Speedtest
+from settings import Settings
 
 CLASSES = {
     'График курса Bitcoin': Graph,
     'Помощь': Help,
     'Продажа и покупка Bitcoin': Stock,
     'Помощь в покупке и продаже Bitcoin': Help_Stock,
-    'Лучшие видеокарты': GPU
+    'Лучшие видеокарты': GPU,
+    'Настройки': Settings
 }
 
 
@@ -39,7 +42,7 @@ class Menu(QMainWindow, Ui_Menu):
 
     def options(self):
         option = self.sender().text()
-        if option != '←':
+        if option != '←' and option != 'Выход':
             self.second_form = CLASSES[option](self)
             self.second_form.show()
         else:
