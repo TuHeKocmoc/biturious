@@ -2,3 +2,9 @@ PyQt5
 requests
 speedtest-cli
 urllib3
+wheel
+bs4
+python-binance
+future
+matplotlib
+beautifulsoup4

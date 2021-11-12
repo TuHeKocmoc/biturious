@@ -20,15 +20,18 @@ class Stock(QMainWindow, Ui_Stock):
         self.move(500, 150)
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.pushButton_3.clicked.connect(self.buttons)
-        coins = (client.get_account()['balances'])
-        rubles, btc = 0, 0
-        for coin in coins:
-            if coin['asset'] == 'RUB':
-                rubles = coin['free']
-            elif coin['asset'] == 'BTC':
-                btc = coin['free']
-        self.green.setText(f'Баланс: {round(float(rubles), 2)}₽')
-        self.red.setText(f'Доступно: {round(float(btc), 2)} BTC')
+        try:
+            coins = (client.get_account()['balances'])
+            rubles, btc = 0, 0
+            for coin in coins:
+                if coin['asset'] == 'RUB':
+                    rubles = coin['free']
+                elif coin['asset'] == 'BTC':
+                    btc = coin['free']
+            self.green.setText(f'Баланс: {round(float(rubles), 2)}₽')
+            self.red.setText(f'Доступно: {round(float(btc), 2)} BTC')
+        except:
+            self.plainTextEdit.setPlainText('ERROR\n\nПрочитайте "Помощь в покупке и продаже Bitcoin"')
         self.pushButton.clicked.connect(self.buttons)
         self.pushButton_2.clicked.connect(self.buttons)
         self.pushButton_4.clicked.connect(self.exit)
