@@ -141,7 +141,6 @@ class Login(QMainWindow, Ui_Login):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.lineEdit.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
         self.lineEdit_2.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
-        self.path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
 
         self.pushButton.clicked.connect(self.authorize)
         self.pushButton_3.clicked.connect(self.reg)
@@ -149,8 +148,8 @@ class Login(QMainWindow, Ui_Login):
         self.pushButton_4.clicked.connect(exit_app)
         self.login = ''
         self.password = ''
-        if os.path.exists(self.path):
-            file = open(self.path, 'r')
+        if os.path.exists('settings.txt'):
+            file = open('settings.txt', 'r')
             logpass = file.readlines()
             login = logpass[0].strip()
             password = logpass[1].strip()
@@ -199,8 +198,8 @@ class Login(QMainWindow, Ui_Login):
                 WHERE login = ?""", (get_ip(), login))
         con.commit()
         con.close()
-        if not os.path.exists(self.path):
-            file = open(self.path, 'w+')
+        if not os.path.exists('settings.txt'):
+            file = open('settings.txt', 'w+')
             file.write('login=' + login)
             file.write('\n')
             file.write('password=' + password)

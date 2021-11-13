@@ -3,8 +3,6 @@ import pathlib
 import os
 import sys
 
-import sys, os
-
 
 def override_where():
     """ overrides certifi.core.where to return actual location of cacert.pem"""
@@ -12,10 +10,8 @@ def override_where():
     return os.path.abspath("cacert.pem")
 
 
-
-path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
-if os.path.exists(path):
-    file = open(path, 'r')
+if os.path.exists('settings.txt'):
+    file = open('settings.txt' 'r')
     data = file.readlines()
 else:
     data = ['', '', '', '']

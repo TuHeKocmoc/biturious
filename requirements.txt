@@ -8,3 +8,4 @@ python-binance
 future
 matplotlib
 beautifulsoup4
+certifi

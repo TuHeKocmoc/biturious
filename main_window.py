@@ -71,11 +71,10 @@ class MainWindow(QMainWindow, Ui_Main):
         self.plainTextEdit_3.insertPlainText(parse())
         self.thread = External(self)
         self.initUI()
-        self.path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
         con = sqlite3.connect("auth.db")
         cur = con.cursor()
-        if os.path.exists(self.path):
-            file = open(self.path, 'r')
+        if os.path.exists('settings.txt'):
+            file = open('settings.txt', 'r')
             logpass = file.readlines()
             login = logpass[0].strip()
             password = logpass[1].strip()
@@ -99,8 +98,7 @@ class MainWindow(QMainWindow, Ui_Main):
         self.lineEdit_4.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
         self.lineEdit_5.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
         self.lineEdit_6.setAttribute(QtCore.Qt.WA_MacShowFocusRect, 0)
-        self.path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
-        file = open(self.path, 'r')
+        file = open('settings.txt', 'r')
         data = file.readlines()
         self.apikey = ''
         self.secretkey = ''
@@ -182,8 +180,7 @@ class MainWindow(QMainWindow, Ui_Main):
         self.email = email[0][0]
         self.lineEdit_2.setText(self.email)
         self.lineEdit_3.setText(self.password)
-        self.path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
-        file = open(self.path, 'r')
+        file = open('settings.txt', 'r')
         data = file.readlines()
         self.apikey = ''
         self.secretkey = ''
@@ -250,11 +247,11 @@ class MainWindow(QMainWindow, Ui_Main):
                             SET password = ? 
                             WHERE email = ?""", (hash_password(self.password), self.login))
 
-            file = open(self.path, 'r+')
+            file = open('settings.txt', 'r+')
             text = file.read()
             list_strings = text.split('\n')
             file.close()
-            file = open(self.path, 'w+')
+            file = open('settings.txt', 'w+')
             list_strings[1] = 'password=' + self.password
             for i in list_strings:
                 tmp = i.strip()
@@ -263,11 +260,11 @@ class MainWindow(QMainWindow, Ui_Main):
                     file.write('\n')
 
         if self.lineEdit_4.text() != self.apikey:
-            file = open(self.path, 'r+')
+            file = open('settings.txt', 'r+')
             text = file.read()
             list_strings = text.split('\n')
             file.close()
-            file = open(self.path, 'w+')
+            file = open('settings.txt', 'w+')
             list_strings[2] = 'apikey=' + self.lineEdit_4.text()
             for i in list_strings:
                 tmp = i.strip()
@@ -277,11 +274,11 @@ class MainWindow(QMainWindow, Ui_Main):
             file.close()
 
         if self.lineEdit_5.text() != self.secretkey:
-            file = open(self.path, 'r+')
+            file = open('settings.txt', 'r+')
             text = file.read()
             list_strings = text.split('\n')
             file.close()
-            file = open(self.path, 'w+')
+            file = open('settings.txt', 'w+')
             if len(list_strings) >= 4:
                 list_strings[3] = 'secretkey=' + self.lineEdit_5.text()
             else:
@@ -295,11 +292,11 @@ class MainWindow(QMainWindow, Ui_Main):
             file.close()
 
         if self.lineEdit_6.text() != self.bitcoinkey:
-            file = open(self.path, 'r+')
+            file = open('settings.txt', 'r+')
             text = file.read()
             list_strings = text.split('\n')
             file.close()
-            file = open(self.path, 'w+')
+            file = open('settings.txt', 'w+')
             if len(list_strings) >= 5:
                 list_strings[4] = 'bitcoin=' + self.lineEdit_6.text()
             else:
