@@ -1,5 +1,6 @@
 from binance.client import Client
 import pathlib
+import os
 
 path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
 if os.path.exists(self.path):
