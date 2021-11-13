@@ -76,13 +76,17 @@ class MainWindow(QMainWindow, Ui_Main):
         self.initUI()
         con = sqlite3.connect("auth.db")
         cur = con.cursor()
-        file = open('settings.txt', 'r')
-        logpass = file.readlines()
-        login = logpass[0].strip()
-        password = logpass[1].strip()
-        self.login = login[login.find('=') + 1:]
-        self.password = password[password.find('=') + 1:]
-        file.close()
+        if os.path.exists(self.path):
+            file = open('settings.txt', 'r')
+            logpass = file.readlines()
+            login = logpass[0].strip()
+            password = logpass[1].strip()
+            self.login = login[login.find('=') + 1:]
+            self.password = password[password.find('=') + 1:]
+            file.close()
+        else:
+            self.login = 'ERROR'
+            self.password = 'ERROR'
         self.lineEdit.setText(self.login)
         email = cur.execute("""SELECT email FROM users WHERE login = ? """, (self.login,)).fetchall()
         self.email = email[0][0]
