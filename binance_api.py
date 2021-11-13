@@ -4,9 +4,6 @@ import os
 
 path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
 
-class NoKeySet(Exception):
-    pass
-
 if os.path.exists(path):
     file = open(path, 'r')
     data = file.readlines()
