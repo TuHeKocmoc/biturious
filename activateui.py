@@ -50,6 +50,7 @@ class Ui_MainWindow(object):
         font.setFamily("Ubuntu Condensed")
         font.setPointSize(16)
         self.pushButton_4.setFont(font)
+        self.pushButton_4.setStyleSheet("color: white")
         self.pushButton_4.setObjectName("pushButton_4")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 290, 751, 131))

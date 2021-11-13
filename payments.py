@@ -24,6 +24,7 @@ class Ui_MainWindow(object):
         font.setFamily("PF Agora Sans Pro")
         font.setPointSize(16)
         self.pushButton_4.setFont(font)
+        self.pushButton_4.setStyleSheet("color: white")
         self.pushButton_4.setObjectName("pushButton_4")
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setGeometry(QtCore.QRect(30, 30, 691, 521))

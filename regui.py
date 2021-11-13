@@ -165,6 +165,7 @@ class Ui_MainWindow(object):
         font.setFamily("Ubuntu Condensed")
         font.setPointSize(16)
         self.pushButton_5.setFont(font)
+        self.pushButton_5.setStyleSheet("color: white")
         self.pushButton_5.setObjectName("pushButton_5")
         MainWindow.setCentralWidget(self.centralwidget)
 
