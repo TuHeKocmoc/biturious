@@ -150,7 +150,7 @@ class Login(QMainWindow, Ui_Login):
         self.login = ''
         self.password = ''
         if os.path.exists(self.path):
-            file = open('settings.txt', 'r')
+            file = open(self.path, 'r')
             logpass = file.readlines()
             login = logpass[0].strip()
             password = logpass[1].strip()
@@ -200,7 +200,7 @@ class Login(QMainWindow, Ui_Login):
         con.commit()
         con.close()
         if not os.path.exists(self.path):
-            file = open('settings.txt', 'w+')
+            file = open(self.path, 'w+')
             file.write('login=' + login)
             file.write('\n')
             file.write('password=' + password)
