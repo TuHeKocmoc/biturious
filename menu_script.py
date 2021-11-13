@@ -8,7 +8,7 @@ from support_stock import Help_Stock
 from gpu import GPU
 from menu_dis import Ui_MainWindow as Ui_Menu
 from speedcheck import Speedtest
-from settings import Settings
+from history import History
 
 CLASSES = {
     'График курса Bitcoin': Graph,
