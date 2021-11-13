@@ -155,4 +155,4 @@ class Ui_MainWindow(object):
         self.lineEdit.setPlaceholderText(_translate("MainWindow", "ваше имя"))
         self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "ваша почта"))
         self.pushButton.setText(_translate("MainWindow", "Восстановить пароль"))
-        self.pushButton_5.setText(_translate("MainWindow", "❌"))
+        self.pushButton_5.setText(_translate("MainWindow", "←"))

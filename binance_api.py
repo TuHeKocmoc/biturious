@@ -3,7 +3,7 @@ import pathlib
 import os
 
 path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
-if os.path.exists(self.path):
+if os.path.exists(path):
     file = open(path, 'r')
     data = file.readlines()
 else:
