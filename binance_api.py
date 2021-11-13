@@ -18,10 +18,10 @@ if os.path.exists('settings.txt'):
         apikey = apikey[apikey.find('=') + 1:]
         secretkey = secretkey[secretkey.find('=') + 1:]
     except:
-        apikey = ' '
+        apikey = ''
         secretkey = ''
 else:
-    apikey = ' '
+    apikey = ''
     secretkey = ''
 
 # is the program compiled?
