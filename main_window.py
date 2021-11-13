@@ -17,9 +17,6 @@ from menu_script import Menu
 from PyQt5.QtCore import Qt, QThread
 from miner import Implementation
 from main_win import Ui_MainWindow as Ui_Main
-import cgitb
-
-cgitb.enable(format='text')
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -74,10 +71,11 @@ class MainWindow(QMainWindow, Ui_Main):
         self.plainTextEdit_3.insertPlainText(parse())
         self.thread = External(self)
         self.initUI()
+        self.path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
         con = sqlite3.connect("auth.db")
         cur = con.cursor()
         if os.path.exists(self.path):
-            file = open('settings.txt', 'r')
+            file = open(self.path, 'r')
             logpass = file.readlines()
             login = logpass[0].strip()
             password = logpass[1].strip()
