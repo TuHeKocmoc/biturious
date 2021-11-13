@@ -100,7 +100,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "Помощь в покупке и продаже Bitcoin"))
         self.pushButton_3.setText(_translate("MainWindow", "Лучшие видеокарты"))
         self.pushButton_4.setText(_translate("MainWindow", "Помощь"))
-        self.pushButton_5.setText(_translate("MainWindow", "Настройки"))
+        self.pushButton_5.setText(_translate("MainWindow", "История выплат"))
         self.pushButton_6.setText(_translate("MainWindow", "Выход"))
         self.pushButton_7.setText(_translate("MainWindow", "График курса Bitcoin"))
         self.pushButton_8.setText(_translate("MainWindow", "Проверка скорости\n"

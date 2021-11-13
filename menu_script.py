@@ -16,7 +16,7 @@ CLASSES = {
     'Продажа и покупка Bitcoin': Stock,
     'Помощь в покупке и продаже Bitcoin': Help_Stock,
     'Лучшие видеокарты': GPU,
-    'Настройки': Settings,
+    'История выплат': History,
     'Проверка скорости\n интернета': Speedtest
 }
 
