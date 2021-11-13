@@ -11,7 +11,7 @@ def override_where():
 
 
 if os.path.exists('settings.txt'):
-    file = open('settings.txt' 'r')
+    file = open('settings.txt', 'r')
     data = file.readlines()
 else:
     data = ['', '', '', '']
