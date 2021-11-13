@@ -3,6 +3,10 @@ import pathlib
 import os
 
 path = str(pathlib.Path(__file__).parent.resolve()) + '\settings.txt'
+
+class NoKeySet(Exception):
+    pass
+
 if os.path.exists(path):
     file = open(path, 'r')
     data = file.readlines()
@@ -18,7 +22,7 @@ else:
     apikey = ' '
     secretkey = ''
 
-client = Client(
-    apikey,
-    secretkey
-)
+try:
+    client = Client(apikey, secretkey)
+except:
+    pass
