@@ -1,7 +1,4 @@
-import sys
-
-from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
+from PyQt5.QtWidgets import QMainWindow, QLabel
 from PriceBit import price
 from matplotlib import pyplot as plt
 from PyQt5.QtGui import QPixmap
@@ -52,7 +49,7 @@ class Graph(QMainWindow, Ui_Graph):
         pixmap = QPixmap(file_name)
         self.label_graph.setPixmap(pixmap)
         self.label_graph.adjustSize()
-        os.remove(file_name)
+        os.remove(file_name + '.png')
 
     def exit(self):
         self.back_in_menu[0].show()

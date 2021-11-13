@@ -1,7 +1,6 @@
 import sys
 
-from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QMainWindow
 from parse import parse
 from PyQt5.QtCore import Qt
 from binance_api import client

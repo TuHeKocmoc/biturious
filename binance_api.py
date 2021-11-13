@@ -1,5 +1,4 @@
 from binance.client import Client
-import pathlib
 import os
 import sys
 

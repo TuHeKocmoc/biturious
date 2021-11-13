@@ -5,11 +5,8 @@ import uuid
 import os
 import hashlib
 import sqlite3
-import pathlib
 import datetime
 
-
-from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QCheckBox
 from PyQt5 import QtWidgets, QtGui, QtCore
 from parse import parse

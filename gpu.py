@@ -1,6 +1,4 @@
-import sys
-
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPlainTextEdit, QPushButton, QLabel
+from PyQt5.QtWidgets import QMainWindow, QPlainTextEdit, QPushButton, QLabel
 from PyQt5.QtCore import Qt
 from parse_gpu import parse
 

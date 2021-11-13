@@ -1,5 +1,3 @@
-import sys
-import sqlite3
 import re
 import os
 import smtplib
@@ -11,9 +9,8 @@ import datetime
 from forgotui import Ui_MainWindow as Ui_Forgot
 from forgot2ui import Ui_MainWindow as Ui_Forgot2
 from email.mime.text import MIMEText
-from requests import get
-from PyQt5 import uic, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):

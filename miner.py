@@ -1,7 +1,5 @@
-import argparse
 import binascii
 import socket
-import sys
 import threading
 import urllib.parse
 import json

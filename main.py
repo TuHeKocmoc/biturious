@@ -4,18 +4,16 @@ import re
 import os
 import random
 import hashlib
-import pathlib
 import time
 from reg import Reg
 from forgot import Forgot
 
 from requests import get
-from PyQt5 import uic, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from mainui import Ui_Login
 from main_window import MainWindow
 
-import os
 import shutil
 import ctypes
 

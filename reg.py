@@ -1,4 +1,3 @@
-import sys
 import sqlite3
 import re
 import os
@@ -10,8 +9,8 @@ import string
 
 from email.mime.text import MIMEText
 from requests import get
-from PyQt5 import uic, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from regui import Ui_MainWindow as Ui_Reg
 from activateui import Ui_MainWindow as Ui_Activate
 
