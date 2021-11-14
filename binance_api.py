@@ -34,6 +34,7 @@ if hasattr(sys, "frozen"):
     # delay importing until after where() has been replaced
     import requests.utils
     import requests.adapters
+
     # replace these variables in case these modules were
     # imported before we replaced certifi.core.where
     requests.utils.DEFAULT_CA_BUNDLE_PATH = override_where()

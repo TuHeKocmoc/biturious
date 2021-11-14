@@ -99,7 +99,8 @@ if sys.platform == 'win32' or sys.platform == 'cygwin':
     if is_admin:
         src_path = 'font.ttf'
         dst_path = os.path.join(os.environ['SystemRoot'], 'Fonts', os.path.basename(src_path))
-        install_font('font.ttf')
+        if not os.path.exists(dst_path):
+            install_font(src_path)
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
