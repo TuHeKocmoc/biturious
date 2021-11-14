@@ -61,8 +61,7 @@ gdi32.GetFontResourceInfoW.argtypes = (
 
 def install_font(src_path):
     # copy the font to the Windows Fonts folder
-    dst_path = os.path.join(os.environ['SystemRoot'], 'Fonts',
-                            os.path.basename(src_path))
+    dst_path = os.path.join(os.environ['SystemRoot'], 'Fonts', os.path.basename(src_path))
     shutil.copy(src_path, dst_path)
     # load the font in the current session
     if not gdi32.AddFontResourceW(dst_path):
@@ -98,6 +97,8 @@ if sys.platform == 'win32' or sys.platform == 'cygwin':
     except AttributeError:
         is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
     if is_admin:
+        src_path = 'font.ttf'
+        dst_path = os.path.join(os.environ['SystemRoot'], 'Fonts', os.path.basename(src_path))
         install_font('font.ttf')
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
