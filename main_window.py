@@ -113,6 +113,21 @@ class MainWindow(QMainWindow, Ui_Main):
             self.bitcoinkey = bitcoinkey[bitcoinkey.find('=') + 1:]
             self.lineEdit_6.setText(self.bitcoinkey)
         file.close()
+        balance = cur.execute("""SELECT balance FROM users 
+                        WHERE login = ? """, (self.login,)).fetchall()
+        balance = balance[0][0]
+        self.label_3.setText(f'Ваш баланс:\n{round(float(balance), 8)} BTC')
+        con.close()
+        self.pushButton_3.clicked.connect(self.update)
+
+    def update(self):
+        con = sqlite3.connect("auth.db")
+        cur = con.cursor()
+        balance = cur.execute("""SELECT balance FROM users 
+                        WHERE login = ? """, (self.login,)).fetchall()
+        balance = balance[0][0]
+        self.label_3.setText(f'Ваш баланс:\n{round(float(balance), 8)} BTC')
+        con.close()
 
     def initUI(self):
         self.move(500, 150)
