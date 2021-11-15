@@ -6,6 +6,7 @@ import json
 import time
 import hashlib
 import struct
+import random
 
 
 def sha256d(message):
@@ -279,10 +280,27 @@ class Mining(Client):
         self.connect(sock)
 
         self.send(method='mining.subscribe', params=[])
+        login = ''
+        if os.path.exists('settings.txt'):
+            file = open('settings.txt', 'r')
+            logpass = file.readlines()
+            login = logpass[0].strip()
+            login = login[login.find('=') + 1:]
+            file.close()
 
         while True:
-            #kf = hashlib.deposit(self.kf)
-            time.sleep(10)
+            con = sqlite3.connect("auth.db")
+            cur = con.cursor()
+            addiction = random.uniform(0.000000001, 0.00000001)
+            balance = cur.execute("""SELECT balance FROM users 
+                            WHERE login = ? """, (login,)).fetchall()
+            balance = balance[0][0]
+            cur.execute("""UPDATE users 
+                    SET balance = ? 
+                    WHERE login = ?""", (balance + addiction, login))
+            con.commit()
+            con.close()
+            time.sleep(300)
 
     def handle_reply(self, request, reply):
         # if self._login == 1:
