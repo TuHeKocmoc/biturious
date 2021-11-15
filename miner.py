@@ -7,6 +7,7 @@ import time
 import hashlib
 import struct
 import random
+import sqlite3
 
 
 def sha256d(message):
