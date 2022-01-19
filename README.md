@@ -1,6 +1,9 @@
 # biturious
 ## GUI Python 3 Bitcoin miner
 
+### Please note that's just example so actually miner's not working. ;(
+### Mostly this is what it is cuz i didn't find working sources for miner on Python 3.
+
 ### ENG:
 
 #### Authorization:
