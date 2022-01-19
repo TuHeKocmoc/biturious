@@ -5,6 +5,7 @@ import random
 import uuid
 import hashlib
 import datetime
+import sqlite3
 
 from forgotui import Ui_MainWindow as Ui_Forgot
 from forgot2ui import Ui_MainWindow as Ui_Forgot2
